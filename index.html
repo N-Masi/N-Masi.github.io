@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    
+  <head>
+      
+     <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117365412-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-117365412-1');
+</script>
+      
+    <title>Survey</title>
+
+      <style>
+          
+          .info {   padding-top: 5%;
+                    padding-left: 20%;
+                    padding-right: 20%;
+                    line-height: 1.5em;
+                    text-align: left; }
+          
+          .response {   text-align: center;
+                        padding-top: 5%; }  
+          
+          html { font-family: "Verdana", sans-serif; 
+             background: #FFFFFF;
+             height: 100%; }
+      
+      </style>
+   
+  </head>
+   
+  <body>
+      
+      <p class="info" id="instructions">
+          This survey consists of a single experimental question. The goal is for you to do a quick visual estimate.<br /><br />You will be shown a diagram with two rectangles on it. One rectangle will be smaller and will be entirely enclosed within the borders of a larger rectangle. Your response will be an estimate, after seeing the diagram for 3 seconds, of what percentage of the larger rectangle's area is taken up by the smaller rectangle within it. In other words, what percentage of size is the small rectangle when compared to the larger one.<br /><br />The goal is for your answer to be a quick visual estimate, so please don't try to overthink your answer or think too long; your response should be recorded as a percentage. This will be done by inputting your answer on the google form in the link provided.<br /><br />Click the "Continue" button to see the image.<br /><br /><br /><button type="button" onclick="continueFunc()">Continue</button>
+      </p>
+      
+      <p class="response" id="survey1" style="display:none;">
+            <img id="image1" src="https://raw.githubusercontent.com/N-Masi/N-Masi.github.io/master/image1.jpg" ALIGN="center">
+                <br /><br /><br />
+            <iframe id="response1" style="display:none" src="https://docs.google.com/forms/d/e/1FAIpQLSc8lhI-yHhrC1qYzC0pFTwtqVd5zvMroEmFa8JkDcfYffo4Ng/viewform?embedded=true" width="640" height="525" frameborder="0" marginheight="0" marginwidth="0" ALIGN="center">Loading...</iframe>
+      </p>
+      
+      <p class="response" id="survey2" style="display:none;">
+            <img id="image2" src="https://raw.githubusercontent.com/N-Masi/N-Masi.github.io/master/image2.jpg" ALIGN="center">
+                <br /><br /><br />
+            <iframe id="response2" style="display:none" src="https://docs.google.com/forms/d/e/1FAIpQLSejM_ecEIsR0XkQT2_5G7OgsCOJaS110g9VXsponhxo6MqYHQ/viewform?embedded=true" width="640" height="525" frameborder="0" marginheight="0" marginwidth="0" ALIGN="center">Loading...</iframe>
+      </p>
+      
+      <script>
+      function continueFunc() {
+        document.getElementById("instructions").style.display = "none";
+        var group = Math.floor((Math.random() * 2) + 1);
+        if (group === 1) {
+             document.getElementById("survey1").style.display = "block";
+             setTimeout( function() {
+             document.getElementById("image1").style.display = "none";
+             document.getElementById("response1").style.display = "block"}, 3000);
+        } else {
+             document.getElementById("survey2").style.display = "block";
+             setTimeout( function() {
+             document.getElementById("image2").style.display = "none";
+             document.getElementById("response2").style.display = "block"}, 3000);
+        }
+      }
+      </script>
+      
+      
+  </body>
+    
+    
+</html>
