@@ -31,3 +31,14 @@
 h3{
     margin-top: 40px;
 }
+
+img {
+    max-width: 50%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+
+.visual {
+    margin-top: 40px;
+    max-width: 30%;
+}
