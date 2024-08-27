@@ -110,3 +110,11 @@ img {
 .timeline-item-content h5 {
     margin: 0 0 5px;
 }
+
+.work-experience-card {
+    margin-bottom: 20px;
+}
+
+.card-title {
+    margin-top: -6px;
+}
