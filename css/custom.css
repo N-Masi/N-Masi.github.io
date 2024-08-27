@@ -50,7 +50,14 @@ img {
 
 .visual {
     margin-top: 40px;
-    max-width: 30%;
+    /* max-width: 30%; */
+}
+
+.bottom-visual {
+    margin-bottom: 40px;
+}
+
+.iapa {
 }
 
 .header-image {
