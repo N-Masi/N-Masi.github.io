@@ -6,30 +6,6 @@
     margin-left: 10px;
 }
 
-.button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px; /* Size of the button */
-    height: 32px; /* Size of the button */
-    background-color: gray;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-.button:hover {
-    background-color: darkgray; /* Hover effect */
-}
-
-.button svg {
-    width: 24px;
-    height: 24px;
-    fill: white;
-}
-
 h3 {
     margin-top: 40px;
 }
@@ -124,4 +100,12 @@ img {
 
 .card-title {
     margin-top: -6px;
+}
+
+.writing {
+    margin-top: 30px;
+}
+
+.writing-list {
+    margin-top: -10px;
 }
