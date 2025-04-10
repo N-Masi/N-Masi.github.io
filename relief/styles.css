@@ -1,0 +1,49 @@
+p, h1, h2 {
+    width: 100%;
+    margin: 0 auto;
+    padding: 8px 0px;
+    max-width: 640px;
+}
+
+img {
+    margin: 0 auto;
+}
+
+.wide-img {
+    display: block;
+    padding: 15px 0px;
+    max-width: 900px;
+}
+
+.bound-img {
+    display: block;
+    padding: 15px 0px;
+    max-width: 640px;
+}
+
+p {
+    font-size: 18px;
+    font-family: "Crimson Text";
+    line-height: 1.4;
+}
+
+h1, h2 {
+    font-family: "Roboto";
+}
+
+footer{
+    p {
+        font-size: 14px;
+    }
+}
+
+.divider {
+    height: 2px;
+    background-color: #0868ac;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.byline {
+    font-style: italic;
+}
