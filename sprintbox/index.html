@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SprintBox</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #0A0F24; color: white; font-family: 'Arial', sans-serif; }
+        .navbar { background: linear-gradient(90deg, #4A00E0, #8E2DE2); }
+        .hero-section {
+            background: url('photos/starter_on_track.JPG') center/cover no-repeat;
+            height: 70vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-direction: column;
+            padding-left: 5%;
+            padding-right: 5%;
+            padding-top: 5%; /* Adjusted to move text higher */
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+        .hero-text {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            display: inline-block;
+        }
+        .custom-btn { background: #6A11CB; border: none; }
+        .custom-btn:hover { background: #2575FC; }
+        .content-section {
+            background: #1A1F38;
+            padding: 50px 0;
+            border-radius: 10px;
+            text-wrap: balance;
+        }
+        .footer { background: linear-gradient(90deg, #4A00E0, #8E2DE2); }
+        video {
+            max-height: 500px;
+            width: auto;
+            border-radius: 10px;
+        }
+        img {
+            max-width: 600px;
+            max-height: auto;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark p-3">
+        <div class="container d-flex align-items-center">
+            <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand fw-bold" href="#" style="color: black;">SprintBox <img src="photos/sprintboxlogo0.png" style="height: 75px; margin: 0 0 8px 8px;"></img></a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#what-is-it">What is SprintBox</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#how">How it Works</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact-us">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <header class="hero-section">
+        <div class="hero-text text-white">
+            <h1 class="fw-bold display-4">SprintBox: the Future of Timing</h1>
+            <p class="lead">Millisecond precision at affordable prices, say goodbye to stopwatches</p>
+        </div>
+    </header>
+    
+    <section id="what-is-it" class="container my-5 text-center">
+        <h2 class="fw-bold mb-4">What is SprintBox</h2>
+        <p>SprintBox is designed primarily for short distance track & field athletes. However, it can be used by athletes of any sport. Stopwatches are considered to already be incorrect by 0.24s relative to Fully Automatic Timing rigs used at meets, though worse, research shows that human reaction speeds are highly variable.</p>
+        <p>SprintBox gives you millisecond-precise measurements that you can use to fine-tune your training, get seed times for meets, or even get your 40y dash time if you're a football athlete looking to make it to the next level.</p>
+    </section>
+
+    <section id="how" class="content-section text-center">
+        <h2 class="fw-bold mb-4">How it Works</h2>
+        <p>You set one device at the start of your race, and at the press of a button it gives you a countdown. As soon as the buzzer goes off, you run to the finish. The device at the finish gets your exact time, and displays it on its screen.</p>
+        <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <h3 class="text-white">Starting Device</h3>
+                    <img src="photos/starter_on_track.JPG" class="d-block w-100 rounded shadow" alt="White box with an antenna placed at the starting line on an indoor track.">
+                </div>
+                <div class="carousel-item">
+                    <h3 class="text-white">Starting a Race</h3>
+                    <img src="photos/starting_race.JPG" class="d-block w-100 rounded shadow" alt="Sprinting athlete pressing the start button on the starting device (white box).">
+                </div>
+                <div class="carousel-item">
+                    <h3 class="text-white">Out the Blocks</h3>
+                    <img src="photos/leaving_blocks.JPG" class="d-block w-100 rounded shadow" alt="Sprinting athlete leaving the blocks next to the starting device.">
+                </div>
+                <div class="carousel-item">
+                    <h3 class="text-white">Crossing the Finish</h3>
+                    <video class="d-block w-100 rounded shadow" controls>
+                        <source src="photos/finish.mov" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+        </div>
+    </section>
+    
+    <section id="contact-us" class="container my-5 text-center">
+        <div class="container">
+            <h2 class="fw-bold mb-4">Contact Us</h2>
+            <p>Interested? Reach out to <a href="mailto:example@example.com">nicholas_masi@brown.edu</a>! I am a master's student in Computer Science at Brown University, and a member of the <a href="https://brownrunningclub.com/">Brown Running Club</a>.</p>
+            <p>If you're a coach, athletic director, or individual athlete, I would love to work with you to get you training faster in no time. Email me with any features that can help your specific training approach, and I will add it!</p>
+            <p>SprintBox is still under development and will be available for purchase soon, we can work together to find a price that works for you.</p>
+            <!-- <form class="w-75 mx-auto" action="mailto:nicholas_masi@brown.edu" method="post" enctype="text/plain">
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="mb-3">
+                    <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control" name="message" rows="5" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn custom-btn w-100 text-white">Send</button>
+            </form> -->
+        </div>
+    </section>
+    
+    <footer class="footer text-center py-3 mt-5">
+        <p class="mb-0">&copy; 2025 Nick Masi & SprintBox. All Rights Reserved. Patent Pending.</p>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

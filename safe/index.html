@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <!-- NEW FONTS -->
+    <head>
+        <title>SAFE</title>
+        <link href="styles.css" rel="stylesheet"/>
+        <link href="../css/custom.css" rel="stylesheet">
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <script src="../javascript/bootstrap.js" defer></script>
+        <ul class="nav nav-pills justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="../index.html">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" role="button" aria-expanded="false">Projects</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="../coding.html">Coding</a></li>
+                    <li><a class="dropdown-item" href="../writing.html">Writing</a></li>
+                    <li><a class="dropdown-item active" href="../visual.html">Visual</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <h1><div class="text-pop">SAFE:</div> Investigating AI Weather Forecasting Models with <div class="text-pop">Stratified Assessments</div> of <div class="text-pop">Forecasts</div> over <div class="text-pop">Earth</div></h1>
+        <h4 class="byline">by <div class="text-pop">Nick Masi</div></h4>
+        <p class="char-container">
+            🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏
+        </p>
+        <p> 
+            Artificial intelligence (AI) is revolutionizing weather forecasts, improving 
+            both their accuracy and computational efficiency. However, these models have a
+            fatal flaw. The measure of an AI forecasting models quality is its average accuracy
+            across all gridpoints over the globe. This approach is in line with the mathematical 
+            roots of the AI field, but fails to capture the real world impacts that drive our
+            desires for accurate weather forecasting. To understand why, lets take a look at
+            where on Earth model performance is worst. We will stick with 
+            <a target="_blank" href="https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/">GraphCast</a>, 
+            Google's <a target="_blank" href="https://docs.google.com/spreadsheets/d/1n30zDDjEzlXl5nAGF8uD_dbZWJAamqImQGCZjfOMuDg/edit?gid=0#gid=0">state of the art</a>
+            deterministic weather forecasting model, and consider its ability to predict
+            atmospheric temperature 3 days in advance—a common benchmark for models.
+        </p>
+        <p class="char-container">
+            🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏
+        </p>
+        <img class="bound-img" src="images/temp_map.png">
+        <p class="char-container">
+            🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏
+        </p>
+        <p>
+            This graph shows the root mean squared error (RMSE), the standard error metric in weather forecasting,
+            of each 1.5° by 1.5° cell across Earth. RMSE in this instance is calculated as the temporally averaged 
+            error of the model across predictions made every 12 hours throughout 2020; this data was not part of 
+            the model's training set. The greater the RMSE, the greater the absolute difference between the model's
+            prediction of the temperature at that gridpoint and the actual value.
+            
+            <br><br>
+
+            It is apparent that the model does not perform uniformly well across the globe. This is
+            the pernicious result of using geospatially averaged accuracy as the one and only metric:
+            unfair performance disparaties get masked. Given that the accuracy of extreme heat forecasts has a
+            <a target="_blank" href="https://doi.org/10.3386/w31361">direct effect on mortality</a>, it is a matter of
+            life and death to be aware of the relative strengths of different models at every
+            individual location.
+        </p>
+        <p class="char-container">
+            🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏
+        </p>
+        <p class="char-container">
+            🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏
+        </p>
+        <p>
+            While GraphCast has a better globally averaged performance, it performs worse at predicting
+            the temperature in Providence, RI compared to models X, Y, Z.
+        </p>
+        <p class="char-container">
+            🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏
+        </p>
+        <p>
+            This is just one example. When we dig deeper, we see that we can find general trends...
+            In general, we see that there are significant disparities in model performance based on the
+            strata of ...
+        </p>
+        <p class="char-container">
+            🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏
+        </p>
+        <p class="char-container">
+            🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏
+        </p>
+        <p>
+            SAFE is a new <a target="_blank" href="https://github.com/N-Masi/spear">open-source package</a> I have developed to facilitate
+            all of the data exploration and fairness assessments I have conducted. The hope with this tool is that it will
+            empower decision-makers with the insight to use the most locally-accurate model for them, and encourage AI
+            developers to prioritze fairness in their model performance by providing a convenient way to perform stratified
+            assessments—breaking free of the single-metric paradigm.
+        </p>
+    </body>
+    <footer class="border-top">
+        <p class="text-muted text-center">© 2025 Nick Masi</p>
+    </footer>
+</html>

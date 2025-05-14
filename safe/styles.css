@@ -1,0 +1,81 @@
+p, h1, h2, h4 {
+    width: 100%;
+    margin: 0 auto;
+    padding: 8px 0px;
+    max-width: 700px;
+}
+
+img {
+    margin: 0 auto;
+}
+
+.wide-img {
+    display: block;
+    padding: 15px 0px;
+    max-width: 900px;
+}
+
+.bound-img {
+    display: block;
+    padding: 15px 0px;
+    max-width: 700px;
+}
+
+p {
+    font-size: 18px;
+    font-family: "IBM Plex Serif";
+    line-height: 1.2;
+}
+
+h1, h2 {
+    font-family: "Poppins" !important;
+    color: #525252 !important;
+    text-align: center;
+    font-size: 230% !important;
+}
+
+footer p {
+    font-size: 14px;
+}
+
+.divider {
+    height: 2px;
+    background-color: #0868ac;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.byline {
+    /* font-style: italic; */
+    text-align: right;
+    color: #525252;
+}
+
+.char-container {
+    font-size: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+}
+
+.text-pop {
+    /* background: linear-gradient(to right, rgb(44, 190, 36), rgb(12, 104, 223)); */
+    background-color: rgb(12, 104, 223);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline;
+    font-weight: 700;
+}
+
+
+#myTooltip {
+    position: absolute;
+    pointer-events: none;
+    padding: 15px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    opacity: 0;
+}
