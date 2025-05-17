@@ -16,9 +16,10 @@ img {
 }
 
 .bound-img {
-    display: block;
+    display: block !important;
     padding: 15px 0px;
     max-width: 700px;
+    margin: auto;
 }
 
 p {
@@ -40,7 +41,7 @@ footer p {
 
 .divider {
     height: 2px;
-    background-color: #0868ac;
+    background-color: rgb(12, 104, 223);
     max-width: 700px;
     margin: 0 auto;
 }
