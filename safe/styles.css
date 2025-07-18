@@ -68,8 +68,12 @@ footer p {
     color: transparent;
     display: inline;
     font-weight: 700;
-}
 
+    a {
+        text-decoration: none;
+    }
+
+}
 
 #myTooltip {
     position: absolute;
@@ -80,3 +84,37 @@ footer p {
     border-radius: 5px;
     opacity: 0;
 }
+
+#map {
+    /* position: absolute; */
+    width: calc(min(665px, 90vw));
+    min-height: 500px;
+    margin: 0 auto;
+    /* box-sizing: border-box; */
+}
+
+.map-container {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center !important;
+    align-content: center !important;
+    /* align-items: center; */
+    padding: 10px;
+    margin: 10px auto;
+    font-size: smaller;
+    font-family: "IBM Plex Serif";
+    text-align: right;
+    max-width: 700px;
+}
+
+@include media-breakpoint-up(sm) {
+  #map {
+    width: 90vw;
+  }
+}
+
+.text-ack {
+    font-size: smaller;
+    font-family: "IBM Plex Serif";
+}
+

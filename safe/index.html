@@ -6,6 +6,7 @@
         <link href="styles.css" rel="stylesheet"/>
         <link href="../css/custom.css" rel="stylesheet">
         <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -16,10 +17,11 @@
         <script src="scripts/plotly-lib.js" defer></script>
         <script text="text/javascript" defer>window.PlotlyConfig = {MathJaxConfig: 'local'}; window.Plotly = window.plotlyFactory; window.PLOTLYENV=window.PLOTLYENV || {}; </script>
         <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>  -->
+        <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
 
         <ul class="nav nav-pills justify-content-end">
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="../index.html">Home</a>
+                <a class="nav-link" aria-current="page" href="../">Home</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" role="button" aria-expanded="false">Projects</a>
@@ -32,11 +34,18 @@
         </ul>
 
         <h1><div class="text-pop">SAFE:</div> Investigating AI Weather Forecasting Models with <div class="text-pop">Stratified Assessments</div> of <div class="text-pop">Forecasts</div> over <div class="text-pop">Earth</div></h1>
-        <h4 class="byline">by <div class="text-pop">Nick Masi</div></h4>
-        <!-- <p class="char-container">
-            🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏🌎🌍🌏
-        </p> -->
+        <h4 class="byline">by <div class="text-pop"><a href="/">Nick Masi</a></div> and <div class="text-pop"><a href="https://randallbalestriero.github.io/" target="_blank">Randall Balestriero</a></div></h4>
+
         <div class="divider"></div>
+
+        <div class="map-container">
+          <div id="map"></div>
+          <script src="scripts/carto-basemap.js"></script>
+          Basemap data from OpenStreetMap with styling from CARTO.
+        </div>
+        
+        <div class="divider"></div>
+
         <p> 
             Artificial intelligence (AI) is revolutionizing weather forecasts, improving 
             both their accuracy and computational efficiency. However, these models have a
@@ -115,6 +124,17 @@
             developers to prioritze fairness in their model performance by providing a convenient way to perform stratified
             assessments—breaking free of the single-metric paradigm.
         </p>
+
+        <div class="divider"></div>
+
+        <p class="text-ack">
+          Thank you to <a href="https://www.reubenfb.com/" target="_blank">Professor Reuben Fischer-Baum</a> of <a href="https://data1500.github.io/" target="_blank">DATA 1500</a> at Brown.
+          Thank you to Daniel Cai and Philip LaDuca for enlightening research discussion.
+          Thank you to <a href="https://medium.com/@limeira.felipe94/highlighting-countries-on-a-map-with-maplibre-and-turf-js-61a6018be60e" target="_blank">Felipe Limeira</a> and <a href="https://medium.com/@dipakpatil2615/rendering-hundreds-of-thousands-of-polygons-using-js-because-gis-deserves-modern-visualization-e27d678dccca" target="_blank">Dipak Patil</a> for insightful cartography tutorials.
+          <br/><br/>
+          SAFE's OSS repo is available <a target="_blank" href="https://github.com/N-Masi/safe">on GitHub</a>.
+        </p>
+        
     </body>
     <footer class="border-top">
         <p class="text-muted text-center">© 2025 Nick Masi</p>
