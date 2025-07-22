@@ -1,3 +1,26 @@
+function getPopupCoordinates(feature) {
+    if ((feature.geometry.type !== 'Polygon') && (feature.geometry.type !== 'MultiPolygon')) {
+        throw new Error('bad feature shape!')
+    }
+    if (feature.geometry.type === 'Polygon') {
+        return turf.centerOfMass(feature.geometry).geometry.coordinates;
+    }
+    let currLargestIndex = 0
+    for (let i = 1; i < feature.geometry.coordinates.length; i += 1) {
+        if (turf.area(
+                {'type': 'Polygon', 'coordinates': feature.geometry.coordinates[currLargestIndex]}
+            ) < turf.area(
+                {'type': 'Polygon', 'coordinates': feature.geometry.coordinates[i]}
+            )) 
+        {
+            currLargestIndex = i;
+        }
+    }
+    return turf.centerOfMass(
+            {'type': 'Polygon', 'coordinates': feature.geometry.coordinates[currLargestIndex]}
+        ).geometry.coordinates;
+}
+
 const styleDark = 'https://basemaps.cartocdn.com/gl/dark-matter-nolabels-gl-style/style.json';
 
 // Initialize the main map with CARTO basemap
@@ -44,41 +67,64 @@ map.on('load', () => {
 
     console.log('source visualized')
 
-    // popup guide: https://maplibre.org/maplibre-gl-js/docs/examples/display-a-popup-on-hover/
-    // const popup = new maplibregl.Popup({
-    //     closeButton: false,
-    //     closeOnClick: false
-    // });
+    // highlight layer
+    map.addLayer({
+        id: 'highlight-layer',
+        type: 'fill',
+        source: 'attributes',
+        layout: {},
+        paint: {
+            'fill-color': '#0C68DF',
+            'fill-opacity': 0.4
+        },
+        filter: ['==', 'name', ''] // Initially empty filter
+    });
 
-    // let currentFeatureCoordinates = undefined;
-    // map.on('mousemove', 'attributes', (e) => {
-    //     const featureCoordinates = e.features[0].geometry.coordinates.toString();
-    //     console.log(featureCoordinates)
-    //     if (currentFeatureCoordinates !== featureCoordinates) {
-    //         currentFeatureCoordinates = featureCoordinates;
+    console.log('here')
 
-    //         // Change the cursor style as a UI indicator.
-    //         map.getCanvas().style.cursor = 'pointer';
+    // Create a popup, but don't add it to the map yet.
+    const popup = new maplibregl.Popup({
+        closeButton: false,
+        closeOnClick: false
+    });
 
-    //         const coordinates = e.features[0].geometry.coordinates.slice();
-    //         const description = e.features[0].properties.description;
+    console.log('popup created')
 
-    //         // Ensure that if the map is zoomed out such that multiple
-    //         // copies of the feature are visible, the popup appears
-    //         // over the copy being pointed to.
-    //         while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-    //             coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-    //         }
+    let currentFeatureCoordinates = undefined;
+    map.on('mousemove', 'territory-layer', (e) => {
+        console.log('arg to popupshape func:', e.features[0]);
+        const coordinates = getPopupCoordinates(e.features[0]);
+        // const coordinates = turf.centerOfMass(e.features[0].geometry);
+        if (currentFeatureCoordinates !== coordinates) {
+            currentFeatureCoordinates = coordinates;
 
-    //         // Populate the popup and set its coordinates
-    //         // based on the feature found.
-    //         popup.setLngLat(coordinates).setHTML(description).addTo(map);
-    //     }
-    // });
+            // Change the cursor style as a UI indicator.
+            map.getCanvas().style.cursor = 'pointer';
 
-    // map.on('mouseleave', 'places', () => {
-    //     currentFeatureCoordinates = undefined;
-    //     map.getCanvas().style.cursor = '';
-    //     popup.remove();
-    // });
+            console.log('coordinates:', coordinates);
+            const description = e.features[0].properties.shapeName;
+            console.log('description:', description);
+
+            // Ensure that if the map is zoomed out such that multiple
+            // copies of the feature are visible, the popup appears
+            // over the copy being pointed to.
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+
+            // Populate the popup and set its coordinates
+            // based on the feature found.
+            popup.setLngLat(coordinates).setHTML(description).addTo(map);
+
+            // activate highlight
+            map.setFilter('highlight-layer', ['==', 'shapeName', description]);
+        }
+    });
+
+    map.on('mouseleave', 'territory-layer', () => {
+        currentFeatureCoordinates = undefined;
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+        map.setFilter('highlight-layer', ['==', 'shapeName', '']);
+    });
 });

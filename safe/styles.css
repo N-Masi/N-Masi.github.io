@@ -118,3 +118,19 @@ footer p {
     font-family: "IBM Plex Serif";
 }
 
+.plotly-container {
+    height: 500px;
+    max-width: 900px; 
+    align-content: center; 
+    text-align: center; 
+    justify-content: center;
+    display: flex; 
+    padding: 0 50%;
+}
+
+.plotly-caption {
+    max-width: 700px;
+    font-size: smaller;
+    font-family: "IBM Plex Serif";
+    text-align: right;
+}
