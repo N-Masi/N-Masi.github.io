@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <!-- NEW FONTS -->
+    <head>
+        <title>SAFE</title>
+        <link href="styles.css" rel="stylesheet"/>
+        <link href="../css/custom.css" rel="stylesheet">
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <meta charset="utf-8" /> 
+    </head>
+    <body>
+        <script src="../javascript/bootstrap.js" defer></script>
+        <script src="scripts/plotly-lib.js" defer></script>
+        <script text="text/javascript" defer>window.PlotlyConfig = {MathJaxConfig: 'local'}; window.Plotly = window.plotlyFactory; window.PLOTLYENV=window.PLOTLYENV || {}; </script>
+        <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
+        <script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
+
+        <ul class="nav nav-pills justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="../">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" role="button" aria-expanded="false">Projects</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="../coding.html">Coding</a></li>
+                    <li><a class="dropdown-item" href="../writing.html">Writing</a></li>
+                    <li><a class="dropdown-item active" href="../visual.html">Visual</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <h1><div class="text-pop">SAFE:</div> Investigating AI Weather Forecasting Models with <div class="text-pop">Stratified Assessments</div> of <div class="text-pop">Forecasts</div> over <div class="text-pop">Earth</div></h1>
+        <div class="safe-byline">
+            <h4 class="byline">by <div class="text-pop"><a href="/">Nick Masi</a></div> and <div class="text-pop"><a href="https://randallbalestriero.github.io/" target="_blank">Randall Balestriero</a></div></h4>
+            <ul class="nav nav-pills safe-pill">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" role="button" aria-expanded="false">Explore SAFE</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../safe">Benchmark</a></li>
+                        <li><a class="dropdown-item" href="../safe/territories.html">Territories</a></li>
+                        <li><a class="dropdown-item active" href="../safe/narrative.html">Narrative</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <p> 
+            Artificial intelligence (AI) is revolutionizing weather forecasts, improving 
+            both their accuracy and computational efficiency. However, these models have a
+            fatal flaw. The measure of an AI forecasting models quality is its average accuracy
+            across all gridpoints over the globe. This approach is in line with the mathematical 
+            roots of the AI field, but fails to capture the real world impacts that drive our
+            desires for accurate weather forecasting. To understand why, lets take a look at
+            where on Earth model performance is worst. We will investigate 
+            <a target="_blank" href="https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/">GraphCast</a>, 
+            Google's <a target="_blank" href="https://docs.google.com/spreadsheets/d/1n30zDDjEzlXl5nAGF8uD_dbZWJAamqImQGCZjfOMuDg/edit?gid=0#gid=0">state of the art</a>
+            deterministic AI model for weather forecasting, and consider its ability to predict
+            atmospheric temperature 3 days in advance—a common benchmark for models.
+
+            <br><br>
+
+            The go-to metric in assessing the performance of these predictions is the root
+            mean square error (RMSE). Typically, RMSE is both temporally and geospatially averaged, 
+            meaning you get one number to report as the quality of your model. Convenient. We will
+            begin by eliminating the reduction over the geospatial dimension (latitude and 
+            longitude), allowing us to see the RMSE at each individual 1.5° by 1.5° cell across Earth. 
+            In addition to sticking with GraphCast, the timespan that model performance will be assessed
+            over will consistently be twice-daily temperature values throughout 2020. GraphCast predictions
+            were retrieved from <a target="_blank" href="https://weatherbench2.readthedocs.io/en/latest/data-guide.html#forecast-datasets">WeatherBench 2</a>,
+            and temperature data from ECMWF's <a target="_blank" href="https://doi.org/10.24381/cds.adbb2d47">ERA5 dataset</a>,
+            made available on the Copernicus Climate Data Store.
+        </p>
+        <div class="divider"></div>
+        <img class="bound-img" src="images/dist.png">
+        <div class="divider"></div>
+        <p>
+            It is apparent that the model does not perform uniformly well across the globe. This is
+            the pernicious result of using geospatially averaged accuracy as the one and only metric:
+            unfair performance disparaties get masked. Given that the accuracy of extreme heat forecasts has a
+            <a target="_blank" href="https://doi.org/10.3386/w31361">direct effect on mortality</a>, it is a matter of
+            life and death to be aware of the relative strengths of different models at
+            individual locations. Let's take a look at where on the world GraphCast performs worst.
+        </p>
+
+        <div class="divider"></div>
+
+        <div class="plotly-container">
+          <div id="f4dc7bf6-7de8-4c50-8d1f-bd16b53cc77c"></div>
+          <script src="scripts/plotly-temp-by-terr.js" defer></script>
+        </div>
+        <p class="plotly-caption">Interactive plotting generated by Plotly.</p>
+        
+        <div class="divider"></div>
+
+        <p>
+            We find that there are a few notable outliers: Greece (GRC), Bulgaria (BGR), the Republic of North Macedonia (MKD),
+            Türkiye (TUR), Albania (ALB), Kosovo (XKX), and Namibia (NAM). These are regions where GraphCast performs significantly
+            worse as compared to in all other territories. Having this sort of knowledge is important, because it can help
+            decision-makers in those territories to be aware of whether tools like GraphCast are appropriate for their use.
+
+            <br><br>
+
+            The results from looking at GraphCast have been interesting, but it is an outstanding question whether these
+            disparities are an idiosyncracy of GraphCast or more systemically present in AI weather forecasting models. To
+            explore this question, we will now consider 5 additional models: Google's Spherical CNN, Keisler's GNN, NeuralGCM,
+            Huawei's Pangu-Weather, and FuXi. Additionally, let's look at not just their bias by territory, but also when grouping
+            the territories by their global subregion and income. We will characterize the unfairness in a model by looking at
+            the greatest difference in RMSE between any two groups for each attribute.
+        </p>
+        <div class="divider"></div>
+        <img class="bound-img" src="images/graph3.png">
+        <div class="divider"></div>
+        <p>
+            We see that it is not just GraphCast! Across all models, and across all three attributes, there are disparities in
+            model performance. All other model prediction data also comes from WeatherBench 2.
+        
+            <br><br>
+
+            SAFE is a new <a target="_blank" href="https://github.com/N-Masi/safe">open-source package</a> I have developed to facilitate
+            all of the data exploration and fairness assessments I conducted. SAFE was used to gather the 
+            per-attribute RMSE values in this exploration. Overall, the tool empowers
+            decision-makers with the insight to use the most locally-accurate model for them, and encourages AI
+            developers to prioritze fairness in their model performance by providing a convenient way to perform stratified
+            assessments—breaking free of the single-metric paradigm.
+        </p>
+
+        <div class="divider"></div>
+
+        <p class="text-ack">
+          Thank you to <a href="https://www.reubenfb.com/" target="_blank">Professor Reuben Fischer-Baum</a> of <a href="https://data1500.github.io/" target="_blank">DATA 1500</a> at Brown.
+          Thank you to Daniel Cai and Philip LaDuca for enlightening research discussion.
+          Thank you to <a href="https://medium.com/@limeira.felipe94/highlighting-countries-on-a-map-with-maplibre-and-turf-js-61a6018be60e" target="_blank">Felipe Limeira</a> and <a href="https://medium.com/@dipakpatil2615/rendering-hundreds-of-thousands-of-polygons-using-js-because-gis-deserves-modern-visualization-e27d678dccca" target="_blank">Dipak Patil</a> for insightful cartography tutorials.
+          <br/><br/>
+          Administrative border data comes from <a href="https://www.geoboundaries.org/" target="_blank">geoBoundaries</a>.
+          <br/><br/>
+          SAFE's OSS repo is available <a target="_blank" href="https://github.com/N-Masi/safe">on GitHub</a>. If you use SAFE, please cite its <a href="../papers/safe_masi.pdf" target="_blank">original paper</a>.
+        </p>
+        
+    </body>
+    <footer class="border-top">
+        <p class="text-muted text-center">© 2025 Nick Masi</p>
+    </footer>
+</html>

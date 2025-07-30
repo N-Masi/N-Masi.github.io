@@ -47,7 +47,6 @@ footer p {
 }
 
 .byline {
-    /* font-style: italic; */
     text-align: right;
     color: #525252;
 }
@@ -133,4 +132,16 @@ footer p {
     font-size: smaller;
     font-family: "IBM Plex Serif";
     text-align: right;
+}
+
+.safe-byline {
+    display: flex; 
+    max-width: 700px; 
+    margin: 0 auto; 
+    justify-content: flex-end; 
+    align-items: center;
+}
+
+.safe-pill {
+    padding-bottom: 12.5px;
 }
